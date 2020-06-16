@@ -173,13 +173,14 @@ lept_type lept_get_type(const lept_value* v) {
 
 int lept_get_boolean(const lept_value* v) {
     /* \TODO */
-    assert(v != NULL );
+    assert(v != NULL && (v->type == LEPT_TRUE || v->type == LEPT_FALSE) );
     return v->u.n;
     return 0;
 }
 
 void lept_set_boolean(lept_value* v, int b) {
     assert(v != NULL);
+    lept_free(v);
     v->u.n=b;
     v->type = b ? LEPT_TRUE : LEPT_FALSE;
     /* \TODO */
